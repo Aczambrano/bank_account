@@ -1,0 +1,115 @@
+package com.neoris.bankaccount.infrastructure.output.mapper;
+
+import com.neoris.bankaccount.domain.model.Account;
+import com.neoris.bankaccount.domain.model.Movement;
+import com.neoris.bankaccount.infrastructure.output.entity.AccountEntity;
+import com.neoris.bankaccount.infrastructure.output.entity.MovementEntity;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-09-14T13:19:44-0500",
+    comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 17.0.14 (Microsoft)"
+)
+@Component
+public class AccountEntityMapperImpl implements AccountEntityMapper {
+
+    @Override
+    public Account entityToAccount(AccountEntity accountEntity) {
+        if ( accountEntity == null ) {
+            return null;
+        }
+
+        Account account = new Account();
+
+        account.setAccountId( accountEntity.getAccountId() );
+        account.setAccountNumber( accountEntity.getAccountNumber() );
+        account.setAccountType( accountEntity.getAccountType() );
+        account.setInitialBalance( accountEntity.getInitialBalance() );
+        account.setStatus( accountEntity.getStatus() );
+        account.setCustomerId( accountEntity.getCustomerId() );
+        account.setMovements( movementEntityListToMovementList( accountEntity.getMovements() ) );
+
+        return account;
+    }
+
+    @Override
+    public AccountEntity accountToEntity(Account account) {
+        if ( account == null ) {
+            return null;
+        }
+
+        AccountEntity accountEntity = new AccountEntity();
+
+        accountEntity.setAccountId( account.getAccountId() );
+        accountEntity.setAccountNumber( account.getAccountNumber() );
+        accountEntity.setAccountType( account.getAccountType() );
+        accountEntity.setInitialBalance( account.getInitialBalance() );
+        accountEntity.setStatus( account.getStatus() );
+        accountEntity.setCustomerId( account.getCustomerId() );
+        accountEntity.setMovements( movementListToMovementEntityList( account.getMovements() ) );
+
+        return accountEntity;
+    }
+
+    protected Movement movementEntityToMovement(MovementEntity movementEntity) {
+        if ( movementEntity == null ) {
+            return null;
+        }
+
+        Movement movement = new Movement();
+
+        movement.setMovementId( movementEntity.getMovementId() );
+        movement.setDate( movementEntity.getDate() );
+        movement.setMovementType( movementEntity.getMovementType() );
+        movement.setValue( movementEntity.getValue() );
+        movement.setBalance( movementEntity.getBalance() );
+
+        return movement;
+    }
+
+    protected List<Movement> movementEntityListToMovementList(List<MovementEntity> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Movement> list1 = new ArrayList<Movement>( list.size() );
+        for ( MovementEntity movementEntity : list ) {
+            list1.add( movementEntityToMovement( movementEntity ) );
+        }
+
+        return list1;
+    }
+
+    protected MovementEntity movementToMovementEntity(Movement movement) {
+        if ( movement == null ) {
+            return null;
+        }
+
+        MovementEntity movementEntity = new MovementEntity();
+
+        movementEntity.setMovementId( movement.getMovementId() );
+        movementEntity.setDate( movement.getDate() );
+        movementEntity.setMovementType( movement.getMovementType() );
+        movementEntity.setValue( movement.getValue() );
+        movementEntity.setBalance( movement.getBalance() );
+
+        return movementEntity;
+    }
+
+    protected List<MovementEntity> movementListToMovementEntityList(List<Movement> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<MovementEntity> list1 = new ArrayList<MovementEntity>( list.size() );
+        for ( Movement movement : list ) {
+            list1.add( movementToMovementEntity( movement ) );
+        }
+
+        return list1;
+    }
+}
