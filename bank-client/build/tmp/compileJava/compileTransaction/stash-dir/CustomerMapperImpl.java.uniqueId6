@@ -1,0 +1,68 @@
+package com.neoris.bankclient.infrastructure.input.mapper;
+
+import com.neoris.bankclient.domain.model.Customer;
+import com.neoris.bankclient.infrastructure.input.dto.CustomerRequest;
+import com.neoris.bankclient.infrastructure.input.dto.CustomerResponse;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-09-16T11:02:59-0500",
+    comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 17.0.14 (Microsoft)"
+)
+@Component
+public class CustomerMapperImpl implements CustomerMapper {
+
+    @Override
+    public Customer toEntity(CustomerRequest customerRequest) {
+        if ( customerRequest == null ) {
+            return null;
+        }
+
+        Customer customer = new Customer();
+
+        customer.setName( customerRequest.name() );
+        customer.setGender( customerRequest.gender() );
+        customer.setAge( customerRequest.age() );
+        customer.setIdentification( customerRequest.identification() );
+        customer.setAddress( customerRequest.address() );
+        customer.setPhone( customerRequest.phone() );
+        customer.setCustomerId( customerRequest.customerId() );
+        customer.setPassword( customerRequest.password() );
+        customer.setStatus( customerRequest.status() );
+
+        return customer;
+    }
+
+    @Override
+    public CustomerResponse toResponse(Customer customer) {
+        if ( customer == null ) {
+            return null;
+        }
+
+        Integer customerId = null;
+        String name = null;
+        String gender = null;
+        Integer age = null;
+        String identification = null;
+        String address = null;
+        String phone = null;
+        Boolean status = null;
+        String password = null;
+
+        customerId = customer.getCustomerId();
+        name = customer.getName();
+        gender = customer.getGender();
+        age = customer.getAge();
+        identification = customer.getIdentification();
+        address = customer.getAddress();
+        phone = customer.getPhone();
+        status = customer.getStatus();
+        password = customer.getPassword();
+
+        CustomerResponse customerResponse = new CustomerResponse( customerId, name, gender, age, identification, address, phone, status, password );
+
+        return customerResponse;
+    }
+}

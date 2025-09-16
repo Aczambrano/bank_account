@@ -1,10 +1,12 @@
 package com.neoris.bankaccount.application.port.input.movement;
 
 import com.neoris.bankaccount.application.exception.ConflictException;
+import com.neoris.bankaccount.application.mapper.MovementMapper;
 import com.neoris.bankaccount.application.port.output.IAccountRepository;
 import com.neoris.bankaccount.application.port.output.IMovementrepository;
 import com.neoris.bankaccount.domain.model.Account;
 import com.neoris.bankaccount.domain.model.Movement;
+import com.neoris.bankaccount.infrastructure.output.entity.MovementEntity;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,7 @@ public class CreateMovementUseCase {
 
     private final IMovementrepository movementRepository;
     private final IAccountRepository accountRepository;
-
+    private final MovementMapper movementMapper;
     @Transactional
     public Movement execute(Movement movement) {
 
